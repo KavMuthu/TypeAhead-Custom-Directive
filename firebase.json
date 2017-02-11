@@ -1,0 +1,9 @@
+{
+  "firebase": "bmcform-2427e",
+  "public": ".",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

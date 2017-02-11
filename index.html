@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="bmcFormApp" data-framework="firebase">
+<head>
+    <meta charset="UTF-8">
+    <title>BMC</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/0.9.0/angularfire.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-notify/0.8.0/ng-notify.min.js"></script>
+    <script src="app/app.js"></script>
+</head>
+<body>
+<div id="header" class="navbar navbar-inverse navbar-fixed-top bg-inverse">
+    <div class="navbar-header">
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+            <i class="icon-reorder"></i>
+        </button>
+        <a class="navbar-brand" href="#">
+            BMC Software
+        </a>
+    </div>
+</div>
+<div id="wrapper">
+
+    <div id="main-wrapper">
+        <div id="main">
+            <div ng-controller="BmcController">
+                <div class="alert alert-info" ng-show="loading">Loading</div>
+                <form id="usersForm" name="UsersForm" ng-submit="addAffectedUserDetails()">
+
+                    <div class="col-xs-7">
+                        <label class="requiredFieldLabel">* Required Field</label>
+                    </div>
+
+                    <div class="col-xs-7">
+                        <label class="affectedUsersLabel ">Affected User(s)<span class="asterisk"> *</span></label>
+                        <typeahead items="items" prompt="Start typing the name of affected user(s)" name="name"
+                                   company="company" email="email" priority="priority" image="image" model="name"
+                                   on-select="onItemSelected()" ng-click="clearForm()"/>
+                    </div>
+                    <div class="col-xs-7">
+                        <label class="affectedCompanyLabel">Affected Company<span class="asterisk"> *</span></label>
+                    </div>
+                    <div class="col-xs-7">
+                        <div class="input-group">
+                        <input type="text" class="form-control" ng-model="company" required>
+                            <span class="input-group-btn">
+                                 <button class="btn btn-default clearButton" type="button" ng-click="clearCompany()"><span class="clearLabel">X</span></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-xs-7">
+                        <label class="incidentTemplateLabel">Incident Template</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control"
+                                   placeholder="Start typing the name of a common issue" ng-model="incidentTemplate">
+                        <span class="input-group-btn input-space">
+                        <button class="btn" type="button">Browse</button>
+                        </span>
+                        </div>
+                    </div>
+
+                    <div class="bestFitDiv col-xs-7">
+                        <input type="checkbox" class="bestFitCheckBox" ng-model="autoAssignBestFit">
+                        <label class="bestFitLabel">
+                            Auto-assign this task to best fit group
+                        </label>
+                    </div>
+                    <div class="col-xs-7">
+                        <label class="incidentTitleLabel">Incident Title<span class="asterisk"> *</span></label>
+                        <input type="text" class="form-control" placeholder="Type a title for this incident"
+                               ng-model="incidentTitle" required>
+                    </div>
+                    <div class="calculatedPriority col-xs-7">
+                        <label>Calculated Priority:</label>
+                        <span class="priorityLbl {{priority}}" ng-model="priority">{{priority}}</span>
+                    </div>
+                    <div class="line-break col-xs-12">
+                        <hr>
+                    </div>
+                    <div class="buttonsDiv col-md-12">
+                        <button type="submit" class="btn btn-primary pull-right saveButton"
+                                ng-disabled="UsersForm.$invalid">Save
+                        </button>
+                        <button type="button" class="btn pull-right">Cancel</button>
+                    </div>
+                    <div class="emptyDiv col-xs-12"></div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <p class="text-center">This is a Bootstrap template.</p>
+</footer>
+</body>
+</html>
