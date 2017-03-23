@@ -1,6 +1,6 @@
 # AngularJs - TypeAhead Custom directive
 
-This application was developed to enhance my AngularJS knowledge of how custom directives work and how to access JSON data via REST API calls. It enables the user type ahead 3 characters and choose a user from the drop down list populated from a JSON file vis REST calls. It also saves data to the Firebase cloud environment. 
+This application was developed to enhance my AngularJS knowledge of how custom directives work and how to access JSON data via REST API calls. It enables the user to type ahead 3 characters and choose a user from the drop down list populated from a JSON file via REST calls. It also saves data to the Firebase cloud environment. 
 
 ## Folders & Files
 
